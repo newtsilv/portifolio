@@ -1,10 +1,17 @@
+"use client";
+
 import Eye from "./Eye";
 import Image from "next/image";
 import { motion } from "framer-motion";
-export default function Personagem() {
+
+type PersonagemProps = {
+  className?: string;
+};
+
+export default function Personagem({ className = "" }: PersonagemProps) {
   return (
     <motion.div
-      className="w-75"
+      className={`h-75 w-75 ${className}`}
       animate={{ y: [0, -15, 0] }}
       transition={{
         duration: 3,
@@ -12,13 +19,14 @@ export default function Personagem() {
         ease: "easeInOut",
       }}
     >
-      <div className="flex flex-row items-center justify-center ">
+      <div className="relative flex h-full flex-row items-center justify-center">
         <Image
           src="/assets/euDesenho.png"
           alt="Personagem"
           width={300}
           height={300}
-          className="z-10 absolute h-75 w-75"
+          className="absolute z-10 h-75 w-75 grayscale contrast-125"
+          priority
         />
         <div className="flex relative right-4 gap-2 top-4 ">
           <div className="flex relative top-[7px]">

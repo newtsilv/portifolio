@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef } from "react";
 type EyeProps = {
   width: number;
@@ -23,8 +25,10 @@ export default function Eye({ width, height, distance }: EyeProps) {
 
       const distance = Math.sqrt(deltaX * deltaX + deltaY * deltaY);
 
+      if (distance === 0) return;
+
       // Limite real baseado no tamanho do olho
-      const maxMove = (width / 2) - (width * 0.3 / 2) - 5;
+      const maxMove = width / 2 - (width * 0.3) / 2 - 5;
 
       const moveX = (deltaX / distance) * Math.min(distance, maxMove);
       const moveY = (deltaY / distance) * Math.min(distance, maxMove);
@@ -35,7 +39,6 @@ export default function Eye({ width, height, distance }: EyeProps) {
     window.addEventListener("mousemove", handleMouseMove);
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [width]);
-
 
   return (
     <div
