@@ -6,6 +6,7 @@ import type { PortfolioSection } from "../../types/portfolio";
 import CharacterGuide from "../character/CharacterGuide";
 import DesktopIcon from "./DesktopIcon";
 import DraggableWindow from "./DraggableWindow";
+import { Header } from "./Header";
 
 export default function DesktopPortfolio() {
   const [openWindows, setOpenWindows] = useState<string[]>([]);
@@ -37,11 +38,10 @@ export default function DesktopPortfolio() {
   }
 
   return (
-    <section className="relative min-h-screen overflow-hidden p-8">
-      <div className="sketch-bg absolute inset-0" />
-      <div className="absolute bottom-6 left-8 right-8 top-8 rotate-[-0.4deg] rounded-lg border-4 border-neutral-950 bg-white/40 shadow-[10px_10px_0_rgba(17,17,17,0.28)]" />
-
-      <div className="relative z-10 flex w-fit flex-col gap-7">
+    <section className="relative min-h-screen overflow-hidden ">
+      <div className="absolute bottom-6 left-8 right-8 top-8 rotate-[-0.4deg] rounded-lg " />
+      <Header />
+      <div className="relative z-10 flex w-fit flex-col gap-7 p-9">
         {portfolioSections.map((section) => (
           <DesktopIcon
             key={section.id}
