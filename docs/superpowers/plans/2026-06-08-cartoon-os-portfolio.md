@@ -265,7 +265,7 @@ function DesktopPortfolio() {
   return (
     <section className="relative min-h-screen overflow-hidden p-8">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_20%,#fde68a_0_8%,transparent_8%_100%),radial-gradient(circle_at_80%_10%,#f9a8d4_0_10%,transparent_10%_100%),linear-gradient(135deg,#7dd3fc,#c4b5fd)]" />
-      <div className="absolute bottom-6 left-8 right-8 top-8 rounded-[2rem] border-4 border-slate-950 bg-white/20 shadow-[10px_10px_0_rgba(15,23,42,0.35)]" />
+      <div className="absolute bottom-6 left-8 right-8 top-8 rounded-[2rem] border-1 border-slate-950 bg-white/20 shadow-[10px_10px_0_rgba(15,23,42,0.35)]" />
 
       <div className="relative z-10 flex w-fit flex-col gap-7">
         {sections.map((section) => (
@@ -316,7 +316,7 @@ function DesktopIcon({
       onBlur={() => onGuideMessage(defaultGuideMessage)}
       aria-label={`Abrir ${section.title}`}
     >
-      <span className="grid h-20 w-24 place-items-center rounded-2xl border-4 border-slate-950 bg-yellow-300 text-4xl shadow-[6px_6px_0_#0f172a] transition group-hover:bg-pink-300">
+      <span className="grid h-20 w-24 place-items-center rounded-2xl border-1 border-slate-950 bg-yellow-300 text-4xl shadow-[6px_6px_0_#0f172a] transition group-hover:bg-pink-300">
         {section.icon}
       </span>
       <span className="rounded-full border-2 border-slate-950 bg-white px-3 py-1 text-sm font-black shadow-[3px_3px_0_#0f172a]">
@@ -348,7 +348,7 @@ function DraggableWindow({
 
   return (
     <motion.article
-      className="absolute w-[min(680px,52vw)] overflow-hidden rounded-[1.75rem] border-4 border-slate-950 bg-rose-50 shadow-[10px_10px_0_#0f172a]"
+      className="absolute w-[min(680px,52vw)] overflow-hidden rounded-[1.75rem] border-1 border-slate-950 bg-rose-50 shadow-[10px_10px_0_#0f172a]"
       style={{ left: 210 + index * 34, top: 82 + index * 38, zIndex }}
       drag
       dragControls={dragControls}
@@ -381,7 +381,7 @@ function DraggableWindow({
 function CharacterGuide({ message }: { message: string }) {
   return (
     <aside className="pointer-events-none absolute bottom-8 right-8 z-[80] flex items-end gap-4">
-      <div className="mb-36 max-w-72 rounded-[2rem] border-4 border-slate-950 bg-white px-5 py-4 text-lg font-black shadow-[6px_6px_0_#0f172a]">
+      <div className="mb-36 max-w-72 rounded-[2rem] border-1 border-slate-950 bg-white px-5 py-4 text-lg font-black shadow-[6px_6px_0_#0f172a]">
         {message}
       </div>
       <Personagem className="scale-90" />
@@ -392,7 +392,7 @@ function CharacterGuide({ message }: { message: string }) {
 function MobilePortfolio() {
   return (
     <section className="min-h-screen bg-gradient-to-b from-sky-300 via-violet-200 to-amber-100 px-5 py-8">
-      <div className="rounded-[2rem] border-4 border-slate-950 bg-white/80 p-5 shadow-[7px_7px_0_#0f172a]">
+      <div className="rounded-[2rem] border-1 border-slate-950 bg-white/80 p-5 shadow-[7px_7px_0_#0f172a]">
         <p className="text-sm font-black uppercase tracking-[0.25em] text-violet-700">
           Portfolio OS
         </p>
@@ -412,7 +412,7 @@ function MobilePortfolio() {
         {sections.map((section) => (
           <article
             key={section.id}
-            className="rounded-[2rem] border-4 border-slate-950 bg-rose-50 shadow-[7px_7px_0_#0f172a]"
+            className="rounded-[2rem] border-1 border-slate-950 bg-rose-50 shadow-[7px_7px_0_#0f172a]"
           >
             <div className="flex items-center gap-3 border-b-4 border-slate-950 bg-yellow-300 px-5 py-4">
               <span className="grid h-11 w-11 place-items-center rounded-2xl border-2 border-slate-950 bg-white text-2xl font-black">

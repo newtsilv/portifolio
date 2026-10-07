@@ -1,36 +1,66 @@
 "use client";
 
-import { defaultGuideMessage } from "../../data/portfolio";
-import type { PortfolioSection } from "../../types/portfolio";
+import type { ReactNode } from "react";
+import { useIconActivation } from "../../lib/useIconActivation";
+import { Tooltip } from "../os/ui";
 
 type DesktopIconProps = {
-  section: PortfolioSection;
-  onOpen: (section: PortfolioSection) => void;
-  onGuideMessage: (message: string) => void;
+  label: string;
+  icon: ReactNode;
+  /** Texto do tooltip (caminho do arquivo). */
+  hint: string;
+  selected: boolean;
+  onSelect: () => void;
+  onOpen: () => void;
+  /** Hover/foco: o personagem comenta o ícone. */
+  onHighlight?: (active: boolean) => void;
 };
 
+/**
+ * Ícone do desktop. Mouse: clique seleciona, duplo clique abre. Toque: um
+ * toque abre. Teclado: Enter abre.
+ */
 export default function DesktopIcon({
-  section,
+  label,
+  icon,
+  hint,
+  selected,
+  onSelect,
   onOpen,
-  onGuideMessage,
+  onHighlight,
 }: DesktopIconProps) {
+  const activation = useIconActivation({ onSelect, onOpen });
+
   return (
-    <button
-      type="button"
-      className="group flex w-24 flex-col items-center gap-2 rounded-md p-2 text-center transition hover:-translate-y-1 focus:outline-none focus:ring-4 focus:ring-neutral-950/20"
-      onClick={() => onOpen(section)}
-      onMouseEnter={() => onGuideMessage(section.message)}
-      onFocus={() => onGuideMessage(section.message)}
-      onMouseLeave={() => onGuideMessage(defaultGuideMessage)}
-      onBlur={() => onGuideMessage(defaultGuideMessage)}
-      aria-label={`Abrir ${section.title}`}
-    >
-      <span className="grid h-14 w-16 -rotate-2 place-items-center rounded-md border-4 border-neutral-950 bg-white text-2xl shadow-[5px_5px_0_#111] transition group-hover:rotate-1">
-        {section.icon}
-      </span>
-      <span className="rounded-sm border-2 border-neutral-950 bg-white px-2 py-1 text-xs font-black shadow-[3px_3px_0_#111]">
-        {section.title}
-      </span>
-    </button>
+    <Tooltip label={hint} side="right">
+      <button
+        type="button"
+        {...activation}
+        aria-pressed={selected}
+        aria-label={`${label} — abrir com duplo clique ou Enter`}
+        onMouseEnter={() => onHighlight?.(true)}
+        onMouseLeave={() => onHighlight?.(false)}
+        onFocus={() => onHighlight?.(true)}
+        onBlur={() => onHighlight?.(false)}
+        className="group flex w-28 flex-col items-center gap-1.5 p-1.5 text-center focus-visible:outline-offset-0"
+      >
+        <span
+          className={`grid h-16 w-16 place-items-center transition-transform duration-150 group-hover:-translate-y-0.5 ${
+            selected ? "[&_svg]:drop-shadow-[2px_2px_0_var(--color-royal)]" : ""
+          }`}
+        >
+          {icon}
+        </span>
+        <span
+          className={`px-1 font-pixel text-sm leading-tight whitespace-nowrap ${
+            selected
+              ? "bg-royal text-paper outline outline-1 outline-dotted outline-paper"
+              : "bg-paper/85 text-ink"
+          }`}
+        >
+          {label}
+        </span>
+      </button>
+    </Tooltip>
   );
 }
